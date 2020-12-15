@@ -1,0 +1,210 @@
+@import './uti';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
+
+:root {
+    --font: 'Open Sans',
+        sans-serif;
+    --green: hsl(163, 100%, 32%);
+    --bg: hsl(228, 7%, 14%);
+    --txt: hsl(228, 2%, 52%);
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+body {
+    line-height: 1.5;
+    background-color: var(--bg);
+    font-family: var(--font);
+    color: #edeef2;
+
+
+}
+
+#root {
+
+
+    background-color: var(--bg);
+    @include flex-1;
+    padding: 1em;
+
+}
+
+
+
+.apps--container {
+    background-color: var(--bg);
+    width: 100%;
+    padding: 1em;
+
+    .row1 {
+        @include flex-1;
+        justify-content: space-between;
+        margin-bottom: 2em;
+
+        p {
+            font-size: 1.5rem
+        }
+
+        button {
+            @include button;
+            background-color: var(--green);
+            color: var(--bg);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+    }
+
+    article {
+     
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 1rem;
+       
+        width: 100%;
+
+
+        .info {
+            box-shadow: 5px 0 2px -5px rgba($color: #fff, $alpha: 0.5);
+            overflow: hidden;
+            position: relative;
+
+            p {
+                white-space: nowrap;
+                letter-spacing: 1px;
+            }
+
+            button {
+                position: absolute;
+                right: 0;
+                @include svg-button;
+                background-color: unset;
+                cursor: pointer;
+
+                svg {
+                    pointer-events: none;
+
+                    path {
+                        fill: var(--txt)
+                    }
+                }
+            }
+        }
+
+        
+    }
+}
+.apps{
+    width: 100%;
+    margin-bottom: 2em;
+   
+}
+.img--section {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #2121;
+    @include flex-1;
+
+    img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+
+
+}
+
+.update--info {
+    padding: 1em;
+    background-color: #003d2d;
+    color: #21ac82;
+}
+#update {
+    align-self: start;
+    @include button;
+    background-color: transparent;
+    border: 1px solid var(--txt);
+    color: var(--green);
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0.375em 1.2em;
+}
+ #close {
+     border: 0;
+     background-color: unset;
+     cursor: pointer;
+     align-self: start;
+
+     svg {
+         pointer-events: none;
+
+         path {
+             stroke: #fff;
+         }
+     }
+ }
+
+
+#updating {
+
+    @include flex-1;
+
+    position: relative;
+
+    &::before {
+        transition: transform 0.4s ease-in;
+        animation: loader 1s ease-in infinite;
+        border: 1px solid #cdcd;
+        border-bottom-color: var(--green);
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+
+
+    }
+
+
+
+
+    img {
+        width: 20px;
+        height: 20px;
+        border-radius: unset;
+
+    }
+}
+
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
